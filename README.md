@@ -125,7 +125,6 @@ Fecha de presentación:
         ├── Sí (S): → Cerrar aplicación
         └── No (N): → Volver al Menú Principal
 ```
-
 ## Validaciones, requerimientos técnicos y funciones mínimas
 ### Validaciones
 - [no es vacío]
@@ -156,9 +155,9 @@ Fecha de presentación:
 - Agregar comentarios para funciones y otros necesarios/pertinentes
 
 ### Funciones Principales mínimas
-- Registro de datos del estudiante.
-- Ingresar notas.
-- Modificar notas.
-- Eliminar registro.
+- Registro de datos del estudiante
+- Ingresar notas
+- Modificar notas
+- Eliminar registro
 - Generar reportes
-- Carga y almacenamiento de datos en archivos.
+- Carga y almacenamiento de datos en archivos
