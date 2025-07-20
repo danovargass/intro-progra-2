@@ -4,8 +4,7 @@ Fecha de presentación:
 
 ## Desarrollo de segundo proyecto de introducción a programación para la Universidad Estatal a Distancia de Costa Rica
 
-<Menu Principal>
-
+**Menu Principal**
 1. Registrar Estudiante [no es vacío]
     - si no existe:
         - Identificación del estudiante
@@ -26,10 +25,10 @@ Fecha de presentación:
                 - Masculino
                 - Femenino
                 - Otro
-                - mostrar => "Género seleccionado <selección del usuario>"
+                - mostrar => "Género seleccionado `selección del usuario`"
             - Registro existoso
                 - guardar en "ESTUDIANTE.txt"
-                - mostrar => "Registro de estudiante existoso! en <archivo dónde se guardó>"
+                - mostrar => "Registro de estudiante existoso! en `archivo dónde se guardó`"
     - si existe:
         - mostrar => "El estudiante ya está registrado!"
 2. Ingresar Calificaciones [no es vacío]
@@ -39,14 +38,14 @@ Fecha de presentación:
             - si no existe
                 - mostrar => "Estudiante no registrado"
                 - preguntar => "Desea ingresar otra identidad?"
-                    - Si (S): volver a <solicitar identificación del estudiante>
-                    - No (N): volver a <Menu Principal>
+                    - Si (S): volver a `solicitar identificación del estudiante`
+                    - No (N): volver a `Menu Principal`
             - si existe
-                - mostrar => "Ingrese la cantidad de materias a registrar (Máximo 3): <valor ingresado>"
-                    -  si <valor ingresado> <= 0
-                        - volver a <Menu Principal>
-                    - si <valor ingresado> == 1 o 2 o 3
-                        - mostrar "Materia <posición de ingreso>"
+                - mostrar => "Ingrese la cantidad de materias a registrar (Máximo 3): `valor ingresado`"
+                    -  si `valor ingresado` <= 0
+                        - volver a `Menu Principal`
+                    - si `valor ingresado` == 1 o 2 o 3
+                        - mostrar "Materia `posición de ingreso`"
                         - Ingresar nombre de la materia
                         - Ingresar notas en base 10 para
                             - Proyecto 1 = 1%
@@ -59,11 +58,11 @@ Fecha de presentación:
                             - entre 70 y 100 => “Aprobó”
                             - entre 50 y 69 => "Reposición"
                             - < 50 => "Reprobó"
-                            - mostrar => "Promedio: <promedio>, estado de la materia <estado>"
-                        - mostrar "Materia <posición de ingreso>" recursivamente hasta llegar al número ingresado por el usuario 
+                            - mostrar => "Promedio: `promedio`, estado de la materia `estado`"
+                        - mostrar "Materia `posición de ingreso`" recursivamente hasta llegar al número ingresado por el usuario 
                         - guardar notas
                             - realizar el cálculo del promedio, con decimales
-                            - adjuntar al registro de la materia específica ["Aprobó","Reposición","Reprobó"] 
+                            - adjuntar al registro de la materia específica [`"Aprobó","Reposición","Reprobó"`] 
                             - guardar en "NOTAS.txt"
                             - relacionar por id con "ESTUDIANTES.txt"
                             - "Registro(s) guardado existosamente! "
@@ -74,8 +73,8 @@ Fecha de presentación:
             - si no existe
                 - mostrar => "Estudiante no registrado"
                 - preguntar => "Desea ingresar otra identidad?"
-                    - Si (S): volver a <solicitar identificación del estudiante>
-                    - No (N): volver a <Menu Principal>
+                    - Si (S): volver a `solicitar identificación del estudiante`
+                    - No (N): volver a `Menu Principal`
             - si existe
                 - "Edad del estudiante"
                     - si es igual al registro mostrar => "Valor ingresado coincide con el registrado."
@@ -92,14 +91,14 @@ Fecha de presentación:
             - si no existe
                 - mostrar => "Estudiante no registrado"
                 - preguntar => "Desea ingresar otra identidad?"
-                    - Si (S): volver a <solicitar identificación del estudiante>
-                    - No (N): volver a <Menu Principal>
+                    - Si (S): volver a `solicitar identificación del estudiante`
+                    - No (N): volver a `Menu Principal`
             - si existe
                 - mostrar => "Materias registradas: \n"
-                    "1. [materiasRegistradas]\n"
-                    "2. [etc]"
+                    "1. [`materiasRegistradas`]\n"
+                    "2. [`etc`]"
                 - seleccionar materia
-                    - mostrar => "Notas actuales: <notas en orden>"
+                    - mostrar => "Notas actuales: `notas en orden`"
                     - Ingresar notas en base 10 para
                         - Proyecto 1 = 1%
                         - Proyecto 2 = 2%
@@ -108,7 +107,7 @@ Fecha de presentación:
                         - Defensa = 3%
                     - mostrar => "Notas modificadas correctamente! ¿Desea hacer otra modificación Sí (S) o No (N)?"
                         - Si (S): volver a mostrar "Materias registradas"
-                        - No (N): volver a <Menu Principal>
+                        - No (N): volver a `Menu Principal`
 5. Eliminar Registro de Estudiante
     - solicitar el número de identificación
         - si existe
@@ -120,15 +119,15 @@ Fecha de presentación:
 6. Reporte de Estudiantes, promedios y estado
     - mostrar => "REPORTE DE ESTUDIANTES - NOTAS FINALES"
         - formato tabla
-            - ID: mostrar => <id estudiante> |
-            - NOMBRE: mostrar => <nombre> + <primer apellido> + <segundo apellido> |
-            - MATERIA: mostrar => <materias ingresadas> |
-            - PROMEDIO: mostrar => <promedio de cada materia> |
-            - ESTADO: mostrar => <estado de la materia> |
+            - ID: mostrar => `id estudiante` |
+            - NOMBRE: mostrar => `nombre` + `primer apellido` + `segundo apellido` |
+            - MATERIA: mostrar => `materias ingresadas` |
+            - PROMEDIO: mostrar => `promedio de cada materia` |
+            - ESTADO: mostrar => <`estado de la materia` |
 7. Salir del programa
     - mostrar => "Seguro que desea salir? Si (S) o No (N)"
         - Si (S): cerrar aplicación
-        - No (N): volver a mostrar <Menu Principal>
+        - No (N): volver a mostrar `Menu Principal`
 
 ## Validaciones, requerimientos técnicos y funciones mínimas
 ### Validaciones
@@ -140,7 +139,7 @@ Fecha de presentación:
     - entre 18 y 100 para edades
     - entre 1 y 3 en notas
 - [volver al menú principal]
-    - opción persitente antes de iniciar el proceso de cada ingreso u opción para volver (S/N) al <Menú principal>
+    - opción persitente antes de iniciar el proceso de cada ingreso u opción para volver (S/N) al `Menú principal`
 - menu
     - si la opción seleccionada no está entre 1 y 7 mostrar => "Opción inválida, vuelva a intentarlo."
     - no mostrar caracteres especiales en el menú
@@ -160,9 +159,9 @@ Fecha de presentación:
 - Agregar comentarios para funciones y otros necesarios/pertinentes
 
 ### Funciones Principales mínimas
-• Registro de datos del estudiante.
-• Ingresar notas.
-• Modificar notas.
-• Eliminar registro.
-• Generar reportes
-• Carga y almacenamiento de datos en archivos.
+- Registro de datos del estudiante.
+- Ingresar notas.
+- Modificar notas.
+- Eliminar registro.
+- Generar reportes
+- Carga y almacenamiento de datos en archivos.
