@@ -5,130 +5,126 @@ Fecha de presentación:
 ## Desarrollo de segundo proyecto de introducción a programación para la Universidad Estatal a Distancia de Costa Rica
 
 **Menu Principal**
-1. Registrar Estudiante [no es vacío]
-    - si no existe:
-        - Identificación del estudiante
-            - debe ser de 10 caracteres numéricos 
-                - [validación que no haya más o menos de 10]
-                - [no debe permitir letras]
-                - [no debe permitir caracteres especiales]
-                - mostrar => "Identificación válida!"
-            - Nombre del estudiante
-            - Primer apellido
-            - Segundo apellido
-            - Lugar de residencia
-                - Provincia
-                - Cantón
-                - Distrito
-            - Edad [validación rango entre 18 y 100]
-            - Género
-                - Masculino
-                - Femenino
-                - Otro
-                - mostrar => "Género seleccionado `selección del usuario`"
-            - Registro existoso
-                - guardar en "ESTUDIANTE.txt"
-                - mostrar => "Registro de estudiante existoso! en `archivo dónde se guardó`"
-    - si existe:
-        - mostrar => "El estudiante ya está registrado!"
-2. Ingresar Calificaciones [no es vacío]
-    - en distintas materias (máximo 3 materias a la vez)
-    - solicitar identificación del estudiante
-        - buscar en "ESTUDIANTE.txt"
-            - si no existe
-                - mostrar => "Estudiante no registrado"
-                - preguntar => "Desea ingresar otra identidad?"
-                    - Si (S): volver a `solicitar identificación del estudiante`
-                    - No (N): volver a `Menu Principal`
-            - si existe
-                - mostrar => "Ingrese la cantidad de materias a registrar (Máximo 3): `valor ingresado`"
-                    -  si `valor ingresado` <= 0
-                        - volver a `Menu Principal`
-                    - si `valor ingresado` == 1 o 2 o 3
-                        - mostrar "Materia `posición de ingreso`"
-                        - Ingresar nombre de la materia
-                        - Ingresar notas en base 10 para
-                            - Proyecto 1 = 1%
-                            - Proyecto 2 = 2%
-                            - Ensayo = 3%
-                            - Foro = 1%
-                            - Defensa = 3%
-                        - Promedio [debe permitir dos decimales]
-                            - utilizar escala de promedios de ingrsar notas
-                            - entre 70 y 100 => “Aprobó”
-                            - entre 50 y 69 => "Reposición"
-                            - < 50 => "Reprobó"
-                            - mostrar => "Promedio: `promedio`, estado de la materia `estado`"
-                        - mostrar "Materia `posición de ingreso`" recursivamente hasta llegar al número ingresado por el usuario 
-                        - guardar notas
-                            - realizar el cálculo del promedio, con decimales
-                            - adjuntar al registro de la materia específica [`"Aprobó","Reposición","Reprobó"`] 
-                            - guardar en "NOTAS.txt"
-                            - relacionar por id con "ESTUDIANTES.txt"
-                            - "Registro(s) guardado existosamente! "
-3. Modificar Datos Estudiante [no es vacío]
-    - solo se permite la modificación de Edad y lugar de residencia
-    - solicitar identificación del estudiante
-        - buscar en "ESTUDIANTE.txt"
-            - si no existe
-                - mostrar => "Estudiante no registrado"
-                - preguntar => "Desea ingresar otra identidad?"
-                    - Si (S): volver a `solicitar identificación del estudiante`
-                    - No (N): volver a `Menu Principal`
-            - si existe
-                - "Edad del estudiante"
-                    - si es igual al registro mostrar => "Valor ingresado coincide con el registrado."
-                    - si es nuevo mostrar => "Valor registrado correctamente!"
-                - "Residencia del estudiante"
-                    - Provincia
-                    - Cantón
-                    - Distrito
-                - mostrar => "Datos actualizados correctamente!"
-4. Modificar Registro de Notas por Estudiante
-    - Solo para modificar notas registradas
-    - solicitar identificación del estudiante
-        - buscar en "ESTUDIANTE.txt"
-            - si no existe
-                - mostrar => "Estudiante no registrado"
-                - preguntar => "Desea ingresar otra identidad?"
-                    - Si (S): volver a `solicitar identificación del estudiante`
-                    - No (N): volver a `Menu Principal`
-            - si existe
-                - mostrar => "Materias registradas: \n"
-                    "1. [`materiasRegistradas`]\n"
-                    "2. [`etc`]"
-                - seleccionar materia
-                    - mostrar => "Notas actuales: `notas en orden`"
-                    - Ingresar notas en base 10 para
-                        - Proyecto 1 = 1%
-                        - Proyecto 2 = 2%
-                        - Ensayo = 3%
-                        - Foro = 1%
-                        - Defensa = 3%
-                    - mostrar => "Notas modificadas correctamente! ¿Desea hacer otra modificación Sí (S) o No (N)?"
-                        - Si (S): volver a mostrar "Materias registradas"
-                        - No (N): volver a `Menu Principal`
-5. Eliminar Registro de Estudiante
-    - solicitar el número de identificación
-        - si existe
-            - confirmar si esta seguro de eliminar el registro (S/N)
-                - Si (S): eliminar todo el registro relacionado del archivo ESTUDIANTES.txt y NOTAS.txt
-                - No (N): preguntar si desea eliminar otro estudiante
-                    - Si (S): entrar de nuevo al ciclo
-                    - No (N): salir al menu principal
-6. Reporte de Estudiantes, promedios y estado
-    - mostrar => "REPORTE DE ESTUDIANTES - NOTAS FINALES"
-        - formato tabla
-            - ID: mostrar => `id estudiante` |
-            - NOMBRE: mostrar => `nombre` + `primer apellido` + `segundo apellido` |
-            - MATERIA: mostrar => `materias ingresadas` |
-            - PROMEDIO: mostrar => `promedio de cada materia` |
-            - ESTADO: mostrar => <`estado de la materia` |
-7. Salir del programa
-    - mostrar => "Seguro que desea salir? Si (S) o No (N)"
-        - Si (S): cerrar aplicación
-        - No (N): volver a mostrar `Menu Principal`
-
+```
+├── 1. Registrar Estudiante
+│   ├── Verificar si estudiante existe
+│   │   ├── Si NO existe:
+│   │   │   ├── Solicitar Identificación (10 caracteres numéricos)
+│   │   │   │   ├── Validaciones:
+│   │   │   │   │   ├── Exactamente 10 caracteres
+│   │   │   │   │   ├── Solo números (no letras ni caracteres especiales)
+│   │   │   │   │   └── Mostrar: "Identificación válida!"
+│   │   │   ├── Solicitar Datos Personales:
+│   │   │   │   ├── Nombre del estudiante
+│   │   │   │   ├── Primer apellido  
+│   │   │   │   ├── Segundo apellido
+│   │   │   │   ├── Lugar de residencia:
+│   │   │   │   │   ├── Provincia
+│   │   │   │   │   ├── Cantón
+│   │   │   │   │   └── Distrito
+│   │   │   │   ├── Edad (validación: 18-100 años)
+│   │   │   │   └── Género:
+│   │   │   │       ├── Masculino
+│   │   │   │       ├── Femenino
+│   │   │   │       ├── Otro
+│   │   │   │       └── Mostrar: "Género seleccionado `selección`"
+│   │   │   └── Guardar en "ESTUDIANTE.txt"
+│   │   │       └── Mostrar: "Registro de estudiante exitoso! en `archivo`"
+│   │   └── Si SÍ existe:
+│   │       └── Mostrar: "El estudiante ya está registrado!"
+├── 2. Ingresar Calificaciones
+│   ├── Solicitar identificación del estudiante
+│   ├── Buscar en "ESTUDIANTE.txt"
+│   │   ├── Si NO existe:
+│   │   │   ├── Mostrar: "Estudiante no registrado"
+│   │   │   └── Preguntar: "¿Desea ingresar otra identidad?"
+│   │   │       ├── Sí (S): → Volver a solicitar identificación
+│   │   │       └── No (N): → Volver al Menú Principal
+│   │   └── Si SÍ existe:
+│   │       ├── Solicitar cantidad de materias (máximo 3)
+│   │       │   ├── Si ≤ 0: → Volver al Menú Principal
+│   │       │   └── Si 1, 2 o 3:
+│   │       │       └── Para cada materia:
+│   │       │           ├── Mostrar: "Materia `posición`"
+│   │       │           ├── Ingresar nombre de materia
+│   │       │           ├── Ingresar notas (base 10):
+│   │       │           │   ├── Proyecto 1 (1%)
+│   │       │           │   ├── Proyecto 2 (2%) 
+│   │       │           │   ├── Ensayo (3%)
+│   │       │           │   ├── Foro (1%)
+│   │       │           │   └── Defensa (3%)
+│   │       │           ├── Calcular Promedio (2 decimales):
+│   │       │           │   ├── 70-100: "Aprobó"
+│   │       │           │   ├── 50-69: "Reposición"
+│   │       │           │   └── <50: "Reprobó"
+│   │       │           └── Mostrar: "Promedio: `promedio`, estado: `estado`"
+│   │       └── Guardar en "NOTAS.txt" relacionado por ID
+│   │           └── Mostrar: "Registro(s) guardado exitosamente!"
+├── 3. Modificar Datos Estudiante
+│   ├── Solicitar identificación del estudiante
+│   ├── Buscar en "ESTUDIANTE.txt"
+│   │   ├── Si NO existe:
+│   │   │   ├── Mostrar: "Estudiante no registrado"
+│   │   │   └── Preguntar: "¿Desea ingresar otra identidad?"
+│   │   │       ├── Sí (S): → Volver a solicitar identificación
+│   │   │       └── No (N): → Volver al Menú Principal
+│   │   └── Si SÍ existe:
+│   │       ├── Modificar Edad:
+│   │       │   ├── Si igual al registro: "Valor ingresado coincide con el registrado"
+│   │       │   └── Si diferente: "Valor registrado correctamente!"
+│   │       ├── Modificar Residencia:
+│   │       │   ├── Provincia
+│   │       │   ├── Cantón
+│   │       │   └── Distrito
+│   │       └── Mostrar: "Datos actualizados correctamente!"
+├── 4. Modificar Registro de Notas por Estudiante
+│   ├── Solicitar identificación del estudiante
+│   ├── Buscar en "ESTUDIANTE.txt"
+│   │   ├── Si NO existe:
+│   │   │   ├── Mostrar: "Estudiante no registrado"
+│   │   │   └── Preguntar: "¿Desea ingresar otra identidad?"
+│   │   │       ├── Sí (S): → Volver a solicitar identificación
+│   │   │       └── No (N): → Volver al Menú Principal
+│   │   └── Si SÍ existe:
+│   │       ├── Mostrar materias registradas:
+│   │       │   ├── "1. [`materia1`]"
+│   │       │   ├── "2. [`materia2`]"
+│   │       │   └── "..."
+│   │       ├── Seleccionar materia
+│   │       ├── Mostrar: "Notas actuales: `notas en orden`"
+│   │       ├── Ingresar nuevas notas:
+│   │       │   ├── Proyecto 1 (1%)
+│   │       │   ├── Proyecto 2 (2%)
+│   │       │   ├── Ensayo (3%)
+│   │       │   ├── Foro (1%)
+│   │       │   └── Defensa (3%)
+│   │       └── Preguntar: "¿Desea hacer otra modificación?"
+│   │           ├── Sí (S): → Volver a mostrar materias registradas
+│   │           └── No (N): → Volver al Menú Principal
+├── 5. Eliminar Registro de Estudiante
+│   ├── Solicitar número de identificación
+│   ├── Si existe:
+│   │   ├── Confirmar: "¿Está seguro de eliminar el registro? (S/N)"
+│   │   │   ├── Sí (S): 
+│   │   │   │   └── Eliminar de ESTUDIANTES.txt y NOTAS.txt
+│   │   │   └── No (N): 
+│   │   │       └── Preguntar: "¿Desea eliminar otro estudiante?"
+│   │   │           ├── Sí (S): → Volver al inicio del ciclo
+│   │   │           └── No (N): → Volver al Menú Principal
+│   │   └── Si no existe: [flujo de manejo de error]
+├── 6. Reporte de Estudiantes, Promedios y Estado
+│   └── Mostrar: "REPORTE DE ESTUDIANTES - NOTAS FINALES"
+│       └── Formato tabla:
+│           ├── ID: `id estudiante`
+│           ├── NOMBRE: `nombre` + `primer apellido` + `segundo apellido`
+│           ├── MATERIA: `materias ingresadas`
+│           ├── PROMEDIO: `promedio de cada materia`
+│           └── ESTADO: `estado de la materia`
+└── 7. Salir del Programa
+    └── Confirmar: "¿Seguro que desea salir? Sí (S) o No (N)"
+        ├── Sí (S): → Cerrar aplicación
+        └── No (N): → Volver al Menú Principal
+```
 ## Validaciones, requerimientos técnicos y funciones mínimas
 ### Validaciones
 - [no es vacío]
@@ -159,9 +155,9 @@ Fecha de presentación:
 - Agregar comentarios para funciones y otros necesarios/pertinentes
 
 ### Funciones Principales mínimas
-- Registro de datos del estudiante.
-- Ingresar notas.
-- Modificar notas.
-- Eliminar registro.
+- Registro de datos del estudiante
+- Ingresar notas
+- Modificar notas
+- Eliminar registro
 - Generar reportes
-- Carga y almacenamiento de datos en archivos.
+- Carga y almacenamiento de datos en archivos

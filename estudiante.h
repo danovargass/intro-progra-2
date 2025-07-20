@@ -4,17 +4,25 @@
 #include <string>
 using namespace std;
 
+struct Residencia{
+    string provincia;
+    string canton;
+    string distrito;
+};
+
 struct Estudiante{
+    int cedula;
     string nombre;
-    string apellido;
+    string primer_apellido;
+    string segundo_apellido;
     int edad;
-    string lugar_residencia;
-    string cedula;
+    char genero;
+    Residencia lugar_residencia;
 };
 
 void registrarEstudiante();
 void guardarEstudiante(const Estudiante& estudiante);
-void modificarEstudiante();
-void eliminarEstudiante();
+void modificarEstudiante(int cedula);
+void eliminarEstudiante(int cedula);
 
 #endif
