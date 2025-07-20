@@ -1,10 +1,11 @@
 # intro-progra-2
-Estudiante: Daniel Vargas Somogyi
+Estudiante: Daniel Vargas Somogyi \
 Fecha de presentación: 
 
 ## Desarrollo de segundo proyecto de introducción a programación para la Universidad Estatal a Distancia de Costa Rica
 
 <Menu Principal>
+
 1. Registrar Estudiante [no es vacío]
     - si no existe:
         - Identificación del estudiante
