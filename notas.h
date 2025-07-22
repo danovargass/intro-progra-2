@@ -5,14 +5,22 @@
 using namespace std;
 
 struct Notas{
+    int cedula;
     string materia;
-    double nota1;
-    double nota2;
-    double nota3;
+    float proyecto_uno;
+    float proyecto_dos;
+    float ensayo;
+    float foro;
+    float defensa;
+    float promedio;
+    string estado;
 };
 
-void registrarNotas();
+void ingresarCalificaciones();
+float calcularPromedio(float proyecto_uno, float proyecto_dos, float ensayo, float foro, float defensa);
+string estadoMateria(float promedio);
 void guardarNotas(const Notas& notas);
 void modificarNotas();
+int bucleExisteEstudiante();
 
 #endif

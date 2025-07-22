@@ -1,6 +1,7 @@
 #include <iostream>
 #include "validacion.h"
 #include "estudiante.h"
+#include "notas.h"
 using namespace std;
 
 int main() {
@@ -25,7 +26,7 @@ int main() {
                 registrarEstudiante();
                 break;
             case 2:
-                //registrarNotas();
+                ingresarCalificaciones();
                 break;
             case 3:  
                 int cedula_del_estudiante;
@@ -34,7 +35,7 @@ int main() {
                 modificarEstudiante(cedula_del_estudiante);               
                 break;
             case 4:
-                //modificarNotas(estudiante.cedula);
+                modificarNotas();
                 break;
             case 5:
                 int cedula_del_estudiante_a_eliminar;

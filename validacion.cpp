@@ -9,11 +9,12 @@ bool estudianteExiste(int cedula){
         while (getline(archivoEstudiantes, linea_del_archivo)) {
             if (linea_del_archivo.find(to_string(cedula)) != string::npos) {
                 cout << "Estudiante existe!" << endl;
+                archivoEstudiantes.close();
                 return true;
             }
         }
         archivoEstudiantes.close();
-        return true;
+        return false;
     }
     else{
         cout << "Estudiante no existe!" << endl;
