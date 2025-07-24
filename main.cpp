@@ -1,5 +1,5 @@
 #include <iostream>
-#include "validacion.h"
+#include "menu.h"
 #include "estudiante.h"
 #include "notas.h"
 using namespace std;
