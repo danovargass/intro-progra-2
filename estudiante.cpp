@@ -8,7 +8,7 @@ using namespace std;
 Estudiante estudiante;
 
 void registrarEstudiante(){
-    cout << "Ingrese el número de cédula del estudiante: ";
+    cout << "Ingrese el número de cédula del estudiante: \n";
     cin >> estudiante.cedula;
     cin.ignore(); // Limpiar el buffer de entrada para evitar problemas con palabras con espacios
     

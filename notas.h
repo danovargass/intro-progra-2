@@ -2,7 +2,11 @@
 #define NOTAS_H
 
 #include <string>
+#include <vector>
 using namespace std;
+
+// Forward declaration
+struct Estudiante;
 
 struct Notas{
     int cedula;
@@ -22,5 +26,12 @@ string estadoMateria(float promedio);
 void guardarNotas(const Notas& notas);
 void modificarNotas();
 int bucleExisteEstudiante();
+void generarReporte();
+void cargarDatosEnMatriz();
+void mostrarEncabezadoReporte();
+void mostrarDatosEstudiantes();
+vector<Estudiante> cargarEstudiantes();
+Estudiante parsearLineaEstudiante(const string& linea);
+Notas parsearLineaNota(const string& linea);
 
 #endif

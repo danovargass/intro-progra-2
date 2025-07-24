@@ -10,7 +10,10 @@ int main() {
     char respuesta_si_no;
 
     do{
-        cout << " SISTEMA DE GESTIÓN DE ESTUDIANTES \n" << endl;
+        cout << "\n";
+        cout << "========================================================\n";
+        cout << "         SISTEMA DE GESTIÓN DE ESTUDIANTES              \n";
+        cout << "========================================================\n";
         cout << " 1. Ingresar Estudiante " << endl;
         cout << " 2. Ingresar Calificaciones en distintas materias "  << endl; 
         cout << " 3. Modificar Datos Estudiante " << endl;  
@@ -44,6 +47,7 @@ int main() {
                 eliminarEstudiante(cedula_del_estudiante_a_eliminar);
                 break;
             case 6:
+                generarReporte();
                 break;
             case 7:
                 cout << "¿Seguro que desea salir? Volver al menú principal Sí (S) o No (N) \n" << endl;

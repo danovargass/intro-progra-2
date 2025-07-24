@@ -8,7 +8,7 @@ bool estudianteExiste(int cedula){
         string linea_del_archivo;
         while (getline(archivoEstudiantes, linea_del_archivo)) {
             if (linea_del_archivo.find(to_string(cedula)) != string::npos) {
-                cout << "Estudiante existe!" << endl;
+                cout << "Estudiante existe! \n" << endl;
                 archivoEstudiantes.close();
                 return true;
             }
@@ -17,7 +17,7 @@ bool estudianteExiste(int cedula){
         return false;
     }
     else{
-        cout << "Estudiante no existe!" << endl;
+        cout << "Estudiante no existe! \n" << endl;
         return false;
     }
 }
@@ -27,7 +27,7 @@ int dentroDelRango(int& valor, int min, int max){
         return valor;
     }
     else{
-        cout << "Opción seleccionada no es válida" << endl;
+        cout << "Opción seleccionada no es válida \n" << endl;
         return 0;
     }
 }

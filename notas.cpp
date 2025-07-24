@@ -1,9 +1,17 @@
 #include "notas.h"
 #include <iostream>
 #include "validacion.h"
+#include "estudiante.h"    // For Estudiante struct
 #include <fstream>
 #include <string>
+#include <map>          // For matrix structure
+#include <vector>       // For storing multiple grades
+#include <iomanip>      // For formatted output
+#include <sstream>      // For string parsing
 using namespace std;
+
+// Global matrix to link students with their grades (as required by README)
+map<string, vector<Notas>> matrizNotasEstudiantes;
 
 Notas notas;
 
@@ -25,7 +33,7 @@ void ingresarCalificaciones(){
         notas.estado = estadoMateria(notas.promedio);
         guardarNotas(notas);
     } else {
-        cout << "El estudiante no existe" << endl;
+        cout << "El estudiante no existe \n" << endl;
         return;
     }
 }
@@ -144,17 +152,135 @@ void modificarNotas(){
 int bucleExisteEstudiante(){
     char respuesta_si_no;
     do {
-        cout << "Ingrese el número de cédula del estudiante al que se le va a ingresar las calificaciones:";
+        cout << "Ingrese el número de cédula del estudiante al que se le va a ingresar las calificaciones: \n";
         cin >> notas.cedula;
         cin.ignore(); // limpiar el buffer de entrada del enter que se ejecuta
         
         if(estudianteExiste(notas.cedula) == false){       
             cout << "El/La estudiante no está registrado. \n"
-            "¿Desea ingresar otra identidad Sí (S) o No (N)? ";
+            "¿Desea ingresar otra identidad Sí (S) o No (N)? \n";
             cin >> respuesta_si_no;
         } else {
             return notas.cedula;
         }
     } while (respuesta_si_no == 'S');  
     return 0;
+}
+
+void generarReporte() {
+    // Load data into matrix structure
+    cargarDatosEnMatriz();
+    
+    // Display formatted report
+    mostrarEncabezadoReporte();
+    mostrarDatosEstudiantes();
+}
+
+void cargarDatosEnMatriz() {
+    // Clear existing matrix
+    matrizNotasEstudiantes.clear();
+    
+    // Load grades from NOTAS.txt into matrix
+    ifstream archivoNotas("NOTAS.txt");
+    string linea;
+    
+    while(getline(archivoNotas, linea)) {
+        Notas nota = parsearLineaNota(linea);
+        matrizNotasEstudiantes[to_string(nota.cedula)].push_back(nota);
+    }
+    archivoNotas.close();
+}
+
+void mostrarEncabezadoReporte() {
+    cout << "\n";
+    cout << "========================================================\n";
+    cout << "         REPORTE DE ESTUDIANTES - NOTAS FINALES       \n";
+    cout << "========================================================\n";
+    cout << setw(12) << "ID" 
+         << setw(25) << "NOMBRE" 
+         << setw(15) << "MATERIA" 
+         << setw(10) << "PROMEDIO" 
+         << setw(12) << "ESTADO" << endl;
+    cout << "--------------------------------------------------------\n";
+}
+
+void mostrarDatosEstudiantes() {
+    vector<Estudiante> estudiantes = cargarEstudiantes();
+    
+    for(const auto& estudiante : estudiantes) {
+        string cedulaStr = to_string(estudiante.cedula);
+        string nombreCompleto = estudiante.nombre + " " + 
+                               estudiante.primer_apellido + " " + 
+                               estudiante.segundo_apellido;
+        
+        if(matrizNotasEstudiantes.find(cedulaStr) != matrizNotasEstudiantes.end()) {
+            // Student has grades
+            auto& notasEstudiante = matrizNotasEstudiantes[cedulaStr];
+            
+            for(size_t i = 0; i < notasEstudiante.size(); i++) {
+                cout << setw(12) << cedulaStr
+                     << setw(25) << (i == 0 ? nombreCompleto : "")
+                     << setw(15) << notasEstudiante[i].materia
+                     << setw(10) << fixed << setprecision(2) 
+                     << notasEstudiante[i].promedio
+                     << setw(12) << notasEstudiante[i].estado << endl;
+            }
+        } else {
+            // Student has no grades
+            cout << setw(12) << cedulaStr
+                 << setw(25) << nombreCompleto
+                 << setw(15) << "Sin materias"
+                 << setw(10) << "N/A"
+                 << setw(12) << "N/A" << endl;
+        }
+        cout << "--------------------------------------------------------\n";
+    }
+}
+
+vector<Estudiante> cargarEstudiantes() {
+    vector<Estudiante> estudiantes;
+    ifstream archivo("ESTUDIANTE.txt");
+    string linea;
+    
+    while(getline(archivo, linea)) {
+        estudiantes.push_back(parsearLineaEstudiante(linea));
+    }
+    archivo.close();
+    return estudiantes;
+}
+
+Estudiante parsearLineaEstudiante(const string& linea) {
+    Estudiante estudiante;
+    stringstream ss(linea);
+    string campo;
+    
+    getline(ss, campo, ','); estudiante.cedula = stoi(campo);
+    getline(ss, estudiante.nombre, ',');
+    getline(ss, estudiante.primer_apellido, ',');
+    getline(ss, estudiante.segundo_apellido, ',');
+    getline(ss, campo, ','); estudiante.edad = stoi(campo);
+    getline(ss, campo, ','); estudiante.genero = campo[0];
+    getline(ss, estudiante.lugar_residencia.provincia, ',');
+    getline(ss, estudiante.lugar_residencia.canton, ',');
+    getline(ss, estudiante.lugar_residencia.distrito);
+    
+    return estudiante;
+}
+
+Notas parsearLineaNota(const string& linea) {
+    Notas nota;
+    stringstream ss(linea);
+    string campo;
+    
+    getline(ss, campo, ','); nota.cedula = stoi(campo);
+    getline(ss, nota.materia, ',');
+    getline(ss, campo, ','); nota.proyecto_uno = stof(campo);
+    getline(ss, campo, ','); nota.proyecto_dos = stof(campo);
+    getline(ss, campo, ','); nota.ensayo = stof(campo);
+    getline(ss, campo, ','); nota.foro = stof(campo);
+    getline(ss, campo, ','); nota.defensa = stof(campo);
+    getline(ss, campo, ','); nota.promedio = stof(campo);
+    getline(ss, nota.estado);
+    
+    return nota;
 }
