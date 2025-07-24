@@ -5,7 +5,6 @@
 #include <vector>
 using namespace std;
 
-// Forward declaration
 struct Estudiante;
 
 struct Notas{
@@ -33,5 +32,6 @@ void mostrarDatosEstudiantes();
 vector<Estudiante> cargarEstudiantes();
 Estudiante parsearLineaEstudiante(const string& linea);
 Notas parsearLineaNota(const string& linea);
+int contadorDeMaterias();
 
 #endif

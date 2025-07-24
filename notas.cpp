@@ -1,37 +1,39 @@
 #include "notas.h"
 #include <iostream>
 #include "validacion.h"
-#include "estudiante.h"    // For Estudiante struct
+#include "estudiante.h" 
 #include <fstream>
 #include <string>
-#include <map>          // For matrix structure
-#include <vector>       // For storing multiple grades
-#include <iomanip>      // For formatted output
-#include <sstream>      // For string parsing
+#include <map>          
+#include <vector>       
+#include <iomanip>      
+#include <sstream>      
 using namespace std;
 
-// Global matrix to link students with their grades (as required by README)
 map<string, vector<Notas>> matrizNotasEstudiantes;
-
 Notas notas;
 
 void ingresarCalificaciones(){
     if(bucleExisteEstudiante() != 0){
-        cout << "Ingrese el nombre de la materia: ";
-        cin >> notas.materia;
-        cout << "Ingrese la nota del proyecto 1: ";
-        cin >> notas.proyecto_uno;
-        cout << "Ingrese la nota del proyecto 2: ";
-        cin >> notas.proyecto_dos;
-        cout << "Ingrese la nota del ensayo: ";
-        cin >> notas.ensayo;
-        cout << "Ingrese la nota del foro: ";
-        cin >> notas.foro;
-        cout << "Ingrese la nota de la defensa: ";
-        cin >> notas.defensa;
-        notas.promedio = calcularPromedio(notas.proyecto_uno, notas.proyecto_dos, notas.ensayo, notas.foro, notas.defensa);
-        notas.estado = estadoMateria(notas.promedio);
-        guardarNotas(notas);
+        int materiasIngresadas = contadorDeMaterias();
+        for(int i = 0; i < materiasIngresadas; i++){
+            cout << "Materia " << i + 1 << ": \n";
+            cout << "Ingrese el nombre de la materia: ";
+            cin >> notas.materia;
+            cout << "Ingrese la nota del proyecto 1: ";
+            cin >> notas.proyecto_uno;
+            cout << "Ingrese la nota del proyecto 2: ";
+            cin >> notas.proyecto_dos;
+            cout << "Ingrese la nota del ensayo: ";
+            cin >> notas.ensayo;
+            cout << "Ingrese la nota del foro: ";
+            cin >> notas.foro;
+            cout << "Ingrese la nota de la defensa: ";
+            cin >> notas.defensa;
+            notas.promedio = calcularPromedio(notas.proyecto_uno, notas.proyecto_dos, notas.ensayo, notas.foro, notas.defensa);
+            notas.estado = estadoMateria(notas.promedio);
+            guardarNotas(notas);
+        }
     } else {
         cout << "El estudiante no existe \n" << endl;
         return;
@@ -283,4 +285,15 @@ Notas parsearLineaNota(const string& linea) {
     getline(ss, nota.estado);
     
     return nota;
+}
+
+int contadorDeMaterias(){
+    int materiasIngresadas;
+    cout << "Cuántas materias desea agregarle notas (1 a 3): ";
+    cin >> materiasIngresadas;
+    if(materiasIngresadas < 1 || materiasIngresadas > 3){
+        cout << "El número de materias debe ser entre 1 y 3 \n" << endl;
+        return 0;
+    }
+    return materiasIngresadas;
 }
