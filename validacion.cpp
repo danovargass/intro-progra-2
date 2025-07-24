@@ -39,21 +39,21 @@ int dentroDelRango(int& valor, int min, int max){
 
 bool validarCedula(string cedula){
     try{
-    if(cedula.length() != 10){
-        cout << "La cédula debe tener 10 dígitos \n" << endl;
-        return false;
-    }
-    for(char digito : cedula){
-        if(!isdigit(digito)){
-            cout << "La cédula solo debe contener números \n" << endl;
+        if(cedula.length() != 10){
+            cout << "La cédula debe tener 10 dígitos \n" << endl;
             return false;
         }
-    }
-    return true;
+        for(char digito : cedula){
+            if(!isdigit(digito)){
+                cout << "La cédula solo debe contener números \n" << endl;
+                return false;
+            }
+        }
+        return true;
     } catch (const std::invalid_argument& e){
-        cout << "Recuerde que solo puede usar números como respuestas \n" << endl;
-        return false;
-    }
+            cout << "Recuerde que solo puede usar números como respuestas \n" << endl;
+            return false;
+        }
 }
 
 bool validarEdad(int edad){

@@ -1,6 +1,7 @@
 #include <iostream>
 #include "menu.h"
 #include "validacion.h"
+#include <limits>
 
 int menuPrincipal(int& opcion){
     cout << "\n";
