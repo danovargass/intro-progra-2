@@ -1,3 +1,4 @@
+// archivo header para referenciar funciones
 #ifndef ESTUDIANTE_H
 #define ESTUDIANTE_H
 

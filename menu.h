@@ -1,3 +1,4 @@
+// archivo header para referenciar funciones
 #ifndef MENU_H
 #define MENU_H
 

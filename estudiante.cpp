@@ -3,35 +3,23 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-
+#include "controladorEntradas.h"
 using namespace std;
 Estudiante estudiante;
 
 void registrarEstudiante(){
-    cout << "Ingrese el número de cédula del estudiante: \n";
-    cin >> estudiante.cedula;
-    cin.ignore(); // Limpiar el buffer de entrada para evitar problemas con palabras con espacios
+    estudiante.cedula = intValido("Ingrese el número de cédula del estudiante: \n");
     
     // si el estudiante no existe, se registra
     if(estudianteExiste(estudiante.cedula) == false){
-        cout << "Ingrese el nombre del estudiante: ";
-        getline(cin, estudiante.nombre);
-        cout << "Ingrese el primer apellido del estudiante: ";
-        getline(cin, estudiante.primer_apellido);
-        cout << "Ingrese el segundo apellido del estudiante: ";
-        getline(cin, estudiante.segundo_apellido);
-        cout << "Ingrese la edad del estudiante: ";
-        cin >> estudiante.edad;
-        cin.ignore(); // limpiar el buffer de entrada del enter que se ejecuta
-        cout << "Ingrese el género del estudiante M = Masculino, F = Femenino, O = Otro: ";
-        cin >> estudiante.genero;
-        cin.ignore(); // limpiar el buffer de entrada del enter que se ejecuta
-        cout << "Ingrese la provincia de residencia del estudiante: ";
-        getline(cin, estudiante.lugar_residencia.provincia);
-        cout << "Ingrese el cantón de residencia del estudiante: ";
-        getline(cin, estudiante.lugar_residencia.canton);
-        cout << "Ingrese el distrito de residencia del estudiante: ";
-        getline(cin, estudiante.lugar_residencia.distrito);
+        estudiante.nombre = stringValido("Ingrese el nombre del estudiante: ");
+        estudiante.primer_apellido = stringValido("Ingrese el primer apellido del estudiante: ");
+        estudiante.segundo_apellido = stringValido("Ingrese el segundo apellido del estudiante: ");
+        estudiante.edad = intValido("Ingrese la edad del estudiante: ");
+        estudiante.genero = charValido("Ingrese el género del estudiante M = Masculino, F = Femenino, O = Otro: ");
+        estudiante.lugar_residencia.provincia = stringValido("Ingrese la provincia de residencia del estudiante: ");
+        estudiante.lugar_residencia.canton = stringValido("Ingrese el cantón de residencia del estudiante: ");
+        estudiante.lugar_residencia.distrito = stringValido("Ingrese el distrito de residencia del estudiante: ");
         guardarEstudiante(estudiante);
     } else {
         cout << "El estudiante ya está registrado! \n" << endl;
@@ -63,15 +51,10 @@ void modificarEstudiante(int cedula){
                 }
                 datosEstudianteActual[indiceCampoActual] = valorCampoTemporal; // ultimo campo 
                 // pedir al usuario los datos que se van a cambiar
-                cout << "Ingrese la nueva edad del estudiante: ";
-                cin >> estudiante.edad;
-                cin.ignore(); // limpiar el buffer de entrada del enter que se ejecuta
-                cout << "Ingrese la nueva provincia de residencia del estudiante: ";
-                getline(cin, estudiante.lugar_residencia.provincia);
-                cout << "Ingrese el nuevo canton de residencia del estudiante: ";
-                getline(cin, estudiante.lugar_residencia.canton);
-                cout << "Ingrese el nuevo distrito de residencia del estudiante: ";
-                getline(cin, estudiante.lugar_residencia.distrito);    
+                estudiante.edad = intValido("Ingrese la nueva edad del estudiante: ");
+                estudiante.lugar_residencia.provincia = stringValido("Ingrese la nueva provincia de residencia del estudiante: ");
+                estudiante.lugar_residencia.canton = stringValido("Ingrese el nuevo canton de residencia del estudiante: ");
+                estudiante.lugar_residencia.distrito = stringValido("Ingrese el nuevo distrito de residencia del estudiante: ");    
                 // escribir lineas con valores actualizados y no actualizados en el archivoEstudiantesTemp
                 archivoEstudiantesTemp 
                     << datosEstudianteActual[0] << ","  // cedula (sin cambio)
@@ -122,7 +105,7 @@ void guardarEstudiante(const Estudiante& estudiante){
             << estudiante.lugar_residencia.canton << ","
             << estudiante.lugar_residencia.distrito << endl;
         archivoEstudiantes.close();
-        cout << "Estudiante guardado exitosamente! \n" << endl;
+        cout << "Estudiante guardado exitosamente! En el archivo ESTUDIANTE.txt \n" << endl;
     } else {
         cout << "Error al abrir el archivo! \n" << endl;
     }

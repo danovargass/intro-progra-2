@@ -1,3 +1,4 @@
+// archivo header para referenciar funciones
 #ifndef NOTAS_H
 #define NOTAS_H
 

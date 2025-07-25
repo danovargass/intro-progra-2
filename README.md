@@ -5,6 +5,7 @@ Fecha de presentación:
 ## Desarrollo de segundo proyecto de introducción a programación para la Universidad Estatal a Distancia de Costa Rica
 
 **Menu Principal**
+__Adaptación en formato Tree de la estructura descrita en el PDF del proyecto__
 ```
 ├── 1. Registrar Estudiante
 │   ├── Verificar si estudiante existe
