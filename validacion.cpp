@@ -3,6 +3,7 @@
 #include "validacion.h"
 
 bool estudianteExiste(int cedula){
+    // funcion valida si el archivo, de estar abierto, contiene la cedula indicada
     ifstream archivoEstudiantes("ESTUDIANTE.txt");
     if (archivoEstudiantes.is_open()) {
         string linea_del_archivo;
@@ -23,22 +24,23 @@ bool estudianteExiste(int cedula){
 }
 
 int dentroDelRango(int& valor, int min, int max){
-    try{
-    if (valor >= min && valor <= max) {
-        return valor;
-    }
-    else{
-        cout << "Opción seleccionada no es válida \n" << endl;
-        return 0;
-    }
+    // funcion manipulable para validar un valor ingresado por un usuario dentro de un rango predefinido
+    try {
+        if (valor >= min && valor <= max) {
+            return valor;
+        }
+        else{
+            return 0;
+        }
     } catch (const std::invalid_argument& e){
-        cout << "Recuerde que solo puede usar números como respuestas \n" << endl;
+        cout << "Opción inválida. Opciones válidas: " << min << " a " << max << " \n" << endl;
         return 0;
     }
 }
 
 bool validarCedula(string cedula){
-    try{
+    // funcion que valida el número de cédula tiene 10 dígitos exactamente y únicamente números
+    try {
         if(cedula.length() != 10){
             cout << "La cédula debe tener 10 dígitos \n" << endl;
             return false;
@@ -51,49 +53,50 @@ bool validarCedula(string cedula){
         }
         return true;
     } catch (const std::invalid_argument& e){
-            cout << "Recuerde que solo puede usar números como respuestas \n" << endl;
+            cout << "Opción inválida. La cédula debe tener 10 dígitos \n" << endl;
             return false;
         }
 }
 
 bool validarEdad(int edad){
-    try{
-    if(edad < 18 && edad >= 100){
-        cout << "La edad debe ser entre 18 y 99 años \n" << endl;
-        return false;
-    }
-    return true;
+    // validación específica para rango de edad predefinido
+    try {
+        if(edad < 18 && edad >= 100){
+            cout << "La edad debe ser entre 18 y 99 años \n" << endl;
+            return false;
+        }
+        return true;
     } catch (const std::invalid_argument& e){
-        cout << "Recuerde que solo puede usar números como respuestas \n" << endl;
+        cout << "Opción inválida. La edad debe ser entre 18 y 99 años \n" << endl;
         return false;
     }
 }
 
 bool validarNota(float nota){
-    try{
-    if(nota < 0.0 && nota > 100.0){
-        cout << "La nota debe ser entre 0 y 100 \n" << endl;
-        return false;
-    }
-    return true;
+    // validación de notas dentro del rango esperado
+    try {
+        if(nota < 0.0 && nota > 100.0){
+            cout << "La nota debe ser entre 0 y 100 \n" << endl;
+            return false;
+        }
+        return true;
     } catch (const std::invalid_argument& e){
-        cout << "Recuerde que solo puede usar números con hasta 2 decimales como respuestas \n" << endl;
+        cout << "Opción inválida. La nota debe ser entre 0 y 100 \n" << endl;
         return false;
     }
 }
 
 char validarGenero(char genero){
-    try{
-    if(genero != 'M' && genero != 'F'){
-        cout << "El género debe ser M o F \n" << endl;
-        return '\0';
-    } else if (genero != 'm' && genero != 'f'){
-        return toupper(genero);
-    } else {
-        return genero;
-    }
+    // validación de género predefinido con control de mayúsculas y minúsculas
+    try {
+        if(genero != 'M' && genero != 'F' && genero != 'm' && genero != 'f'){
+            cout << "El género debe ser M o F \n" << endl;
+            return '\0';
+        } else {
+            return toupper(genero);
+        }
     } catch (const std::invalid_argument& e){
-        cout << "Recuerde que solo puede usar M o F como respuestas \n" << endl;
+        cout << "Opción inválida. El género debe ser M o F \n" << endl;
         return '\0';
     }
 }

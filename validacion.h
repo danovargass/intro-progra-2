@@ -1,3 +1,4 @@
+// archivo header para referenciar funciones
 #ifndef VALIDACION_H
 #define VALIDACION_H
 
